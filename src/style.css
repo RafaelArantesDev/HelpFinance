@@ -1,0 +1,195 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+:root {
+    --cor-principal: #001021;
+    --cor-secundaria: #021736;
+    --cor-destaque: #e0eb13;
+    --cor-texto: #fbffc4;
+    font-family: "Nunito", sans-serif;
+
+}
+
+body{
+    background-color: var(--cor-principal);
+    color: var(--cor-texto)
+}
+
+
+/* ================== TITULO =============== */
+
+
+header {
+    margin: 1rem 2rem;
+}
+
+#title {
+    font-weight: bold;
+    margin-bottom: .1rem;
+}
+
+.sub-title {
+    color: var(--cor-destaque)
+}
+
+/* ================== EXTRATOS =============== */
+#section-main{
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+#extratos {
+    display: flex;
+    gap: 6rem;
+}
+
+.extratos-box{
+    background-color: var(--cor-secundaria);
+    padding: 3rem;
+    height: 100%;
+    flex: 1;
+    min-width: 140px;
+    text-align: center;
+}
+
+.extratos-box{
+    border-radius: 8px;
+    border: 1px solid transparent;
+    transition: 0.4s;
+}
+
+.extratos-box:hover{
+    border-radius: 8px;
+    border: 1px solid var(--cor-destaque);
+    transform: scale(1.03);
+}
+
+#card-entradas{
+    color: #0ed100;
+}
+
+#card-saidas{
+    color: #e20000;
+}
+
+#card-total{
+    color: var(--cor-texto);
+}
+
+.valores{
+    margin-top: 2px;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+/* ================== FORMULÁRIO =============== */
+
+#title-form{
+    text-align: center;
+    margin: 1.5rem;
+}
+
+#form {
+    display: flex;
+    gap: 1rem;
+}
+
+.container-input{
+    flex: 0 0 1;
+   
+}
+
+input {
+    max-width: 100px;
+    outline: none;
+}
+
+#btnForm{
+    background-color: var(--cor-destaque);
+    padding: .2rem;
+    border-style: none;
+    border-radius:10px;
+    transition: 0.2s;
+    font-weight: 600;
+    color: #021736;
+    cursor: pointer;
+}
+
+#btnForm:hover{
+    background-color: var(--cor-destaque);
+    padding: .2rem;
+    border-style: none;
+    border-radius:10px;
+    font-weight: 600;
+    color: #021736;
+    opacity: .8;
+    cursor: pointer;
+    transform: scale(1.025);
+}
+
+/* ================== HISTORICO =============== */
+
+#historico-transacoes {
+    display: flex;
+    flex-direction: column;
+}
+
+#title-historico{
+    text-align: center;
+    margin-top: 2rem;
+}
+
+#filtros {
+    margin-bottom: 1rem;
+}
+
+tr {
+    display: flex;
+    gap: 8rem;
+    font-size: 1.1rem;
+}
+
+th{
+    text-align: center;
+    border-bottom: 1.5px solid var(--cor-destaque);
+    min-width: 95px;
+    flex: 1;
+
+}
+
+#lista-transacoes{
+    background-color: var(--cor-texto);
+    color: var(--cor-principal);
+    border-radius: .5rem;
+    
+}
+
+#lista-transacoes, th{
+    text-align: center;
+    border: none;
+    margin-top: .5rem;
+}
+
+.novosTh {
+    font-weight: 600;
+    color: var(--cor-principal);
+    text-align: center;
+    border: none;
+    margin-top: .5rem;
+    min-width: 90px;
+    flex: 1;
+}
+
+#tabela{
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+

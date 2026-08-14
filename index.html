@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/style.css">
+    <script src="src/index.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" 
+    rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    
+    <header>
+        <div>
+            <h1 id="title">Help Finance</h1>
+            <p class="sub-title">Minha Gestão Financeira </p>
+        </div>
+    </header>
+    <main id="section-main">
+        <section id="extratos">
+            <div class="extratos-box" id="card-entradas">
+                <h3>Entradas</h3>
+                <p class="valores" id="value-entrada">R$ 0,00</p>
+            </div> 
+            <div class="extratos-box" id="card-total">
+                <h3>Saldo Total</h3>
+                <p class="valores" id="value-total">R$ 0,00</p>
+            </div>
+            <div class="extratos-box" id="card-saidas">
+                <h3>Saídas</h3>
+                <p class="valores" id="value-saida">R$ 0,00</p>
+            </div>
+           
+        </section>
+        <section id="nova-transicao">
+            <div>
+                <h3 id="title-form"> FAÇA UMA NOVA TRANSAÇÃO</h2>
+                <form action="" id="form">
+                    <div class="container-input">
+                        <label for="descricao">Descrição</label>
+                        <input type="text" id="descricao" name="descricao" required>
+                    </div>
+                    <div class="container-input">
+                        <label for="valor">Valor R$</label>
+                        <input type="text" id="valor" required>
+                    </div>
+                    <div class="container-input"> 
+                        <label for="tipo">Tipo de Transação</label>
+                        <select id="tipo" placeholder="Selecione uma opção" class="select" required>
+                            <option value="" disabled selected>Selecione uma opção...</option>
+                            <option value="saidas">Saída</option>
+                            <option value="entradas">Entrada</option>
+                        </select>
+                    </div>
+                    <div class="container-input">
+                        <label for="categoria">Categoria</label>
+                        <select name="categoria" id="categoria" class="select" required>
+                            <option value= "" disabled selected>Selecione uma opção...</option>
+                            <option value="Investimentos">Investimentos</option>
+                            <option value="Automoveis">Automoveís</option>
+                            <option value="Estetica">Estetica</option>
+                            <option value="Lazer">Lazer</option>
+                            <option value="Transportes">Transportes</option>
+                            <option value="Renda">Renda / Salário</option>
+                            <option value="Outros">Outros</option>
+                        </select>
+                    </div>
+                    <div class="container-input">
+                        <label for="data-transacao">Data Transação</label>
+                        <input type="date" name="data-transacao" id="data-transacao" required>
+                    </div>
+                    <button type="submit" id="btnForm">Enviar</button>
+                </form>
+            </div>
+        </section>
+        <section id="historico-transacoes">
+            <h2 id="title-historico">Histórico de Transações</h2>
+            <div id="filtros">
+                <label for="filtro-tipo">Filtrar por:</label>
+                <select id="filtro-tipo">
+                    <option value="todas">Todas</option>
+                    <option value="entradas">Entradas</option>
+                    <option value="saidas">Saídas</option>
+                </select>
+            </div>
+            <div>
+                <table id="tabela">
+                    <thead>
+                        <tr id="colunas">
+                            <th>Descrição</th>
+                            <th>Valor</th>
+                            <th>Categoria</th>
+                            <th>Data</th>
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody id="lista-transacoes">
+                
+                        <!-- As linhas serão inseridas dinamicamente via JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
