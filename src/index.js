@@ -102,6 +102,16 @@ function atualizarDados(historico){
   calcTotal(historico);
 }
 
+function filtrarTransacoes(historico, tipo){
+  const historicoFiltrado = historico.filter((item) => {
+    if (tipo === "todas") {
+      return item;
+    }
+    return item.tipo === tipo;
+  });
+  return historicoFiltrado;
+}
+
 // ========= EVENTOS ============
 
 form.addEventListener("submit", (event) => {
@@ -136,17 +146,11 @@ form.addEventListener("submit", (event) => {
 });
 
 filtroTipo.addEventListener("change", (event) => {
-
   limparTabela();
+  const filtro = filtrarTransacoes(historico, filtroTipo.value);
 
-  const historicoFiltrado = historico.filter((item) => {
-    if (filtroTipo.value === "todas") {
-      return item;
-    }
-    return item.tipo === filtroTipo.value;
-  });
+  listHistorico(filtro);
 
-  listHistorico(historicoFiltrado);
 });
 
 function limparTabela() {
