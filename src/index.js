@@ -19,44 +19,45 @@ const historico = [];
 
 // ========= FUNÇÕES ============
 
-function ultimoTransacao(historico) {
-  const ultimo = [];
-  const ultimoItem = historico[historico.length - 1];
-
-  ultimo.push(ultimoItem);
-  return ultimo;
+function listHistorico(historicoTransacoes) {
+  historicoTransacoes.forEach((item) => {
+    criarLinha(item)
+  });
 }
 
-function listHistorico(transacoes) {
-  transacoes.forEach((item) => {
-    const tr = document.createElement("tr");
+function criarLinha(transacao){
+  const tr = document.createElement("tr");
+    tr.dataset.id = transacao.id;
 
     const tdCategoria = document.createElement("td");
-    tdCategoria.innerText = item.categoria;
+    tdCategoria.innerText = transacao.categoria;
     tdCategoria.classList.add("novosTh");
 
     const tdDescricao = document.createElement("td");
-    tdDescricao.innerText = item.descricao;
+    tdDescricao.innerText = transacao.descricao;
     tdDescricao.classList.add("novosTh");
 
     const tdValor = document.createElement("td");
-    tdValor.innerText = item.valor;
+    tdValor.innerText = transacao.valor;
     tdValor.classList.add("novosTh");
 
     const tdTipo = document.createElement("td");
-    tdTipo.innerText = item.tipo;
+    tdTipo.innerText = transacao.tipo;
     tdTipo.classList.add("novosTh");
 
     const tdData = document.createElement("td");
-    tdData.innerText = item.data;
+    tdData.innerText = transacao.data;
     tdData.classList.add("novosTh");
 
-    tr.append(tdDescricao, tdValor, tdCategoria, tdData, tdTipo);
+    const tdBtn = document.createElement("td")
+    const btnExcluir = document.createElement("button")
+    btnExcluir.className = "excluir"
+    btnExcluir.innerText = "Excluir"
+
+    tdBtn.appendChild(btnExcluir)
+
+    tr.append(tdDescricao, tdValor, tdCategoria, tdData, tdTipo, tdBtn);
     campoHistorico.appendChild(tr);
-  });
-  calcEntradas(historico);
-  calcSaidas(historico);
-  calcTotal(historico);
 }
 
 function calcEntradas(historico) {
@@ -67,7 +68,6 @@ function calcEntradas(historico) {
       return acc;
     }
   }, 0);
-  // console.log(valorTotal)
   totalEntradas.innerText = "R$ " + valorTotal;
 }
 
@@ -79,7 +79,6 @@ function calcSaidas(historico) {
       return acc;
     }
   }, 0);
-  // console.log(valorTotal)
   totalSaidas.innerText = "R$ -" + valorTotal;
 }
 
@@ -89,10 +88,18 @@ function calcTotal(historico) {
       return (acc += item.valor);
     } else if (item.tipo === "saidas") {
       return (acc -= item.valor);
+    }else{
+      alert("opção Inválida!")
+      return acc
     }
   }, 0);
-  // console.log(valorTotal)
   totalSaldo.innerText = "R$ " + valorTotal;
+}
+
+function atualizarDados(historico){
+  calcEntradas(historico);
+  calcSaidas(historico);
+  calcTotal(historico);
 }
 
 // ========= EVENTOS ============
@@ -111,6 +118,7 @@ form.addEventListener("submit", (event) => {
 
   if (preenchidos) {
     const transacoes = {
+      id: crypto.randomUUID(),
       descricao: inputDesc.value,
       valor: Number(inputValor.value),
       tipo: inputTipo.value,
@@ -119,19 +127,15 @@ form.addEventListener("submit", (event) => {
     };
 
     historico.push(transacoes);
+    criarLinha(transacoes);
 
-    // console.log(typeof transacoes.valor)
-    // console.log(historico)
+    atualizarDados(historico);
   } else {
     console.log("ainda falta inputs");
   }
-  
-
-  listHistorico(ultimoTransacao(historico));
 });
 
 filtroTipo.addEventListener("change", (event) => {
-  // event.preventDefault()
 
   limparTabela();
 
@@ -143,11 +147,28 @@ filtroTipo.addEventListener("change", (event) => {
   });
 
   listHistorico(historicoFiltrado);
-
-  // console.log(filtroTipo.value)
-  // console.log(historicoFiltrado)
 });
 
 function limparTabela() {
   campoHistorico.innerHTML = "";
 }
+
+campoHistorico.addEventListener('click', (e) => {
+  const targetEl = e.target
+
+ if(targetEl.classList.contains('excluir')){
+    console.log('clique correto botao excluir')
+    const parentEl =  targetEl.closest('tr')
+    const id = parentEl.dataset.id;
+
+    const indice = historico.findIndex((item) =>{
+    return id === item.id   
+    })
+
+    if (indice >= 0){
+      parentEl.remove();
+      historico.splice(indice, 1)
+      atualizarDados(historico)
+    }
+  } 
+})
