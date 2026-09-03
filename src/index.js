@@ -16,48 +16,50 @@ const filtroTipo = document.getElementById("filtro-tipo");
 const campoHistorico = document.getElementById("lista-transacoes");
 
 const historico = [];
-
+historico.push(...carregarHistorico());
+listHistorico(historico);
+atualizarDados(historico);
 // ========= FUNÇÕES ============
 
 function listHistorico(historicoTransacoes) {
   historicoTransacoes.forEach((item) => {
-    criarLinha(item)
+    criarLinha(item);
   });
 }
 
-function criarLinha(transacao){
+function criarLinha(transacao) {
   const tr = document.createElement("tr");
-    tr.dataset.id = transacao.id;
+  tr.dataset.id = transacao.id;
 
-    const tdCategoria = document.createElement("td");
-    tdCategoria.innerText = transacao.categoria;
-    tdCategoria.classList.add("novosTh");
+  const tdCategoria = document.createElement("td");
+  tdCategoria.innerText = transacao.categoria;
+  tdCategoria.classList.add("novosTh");
 
-    const tdDescricao = document.createElement("td");
-    tdDescricao.innerText = transacao.descricao;
-    tdDescricao.classList.add("novosTh");
+  const tdDescricao = document.createElement("td");
+  tdDescricao.innerText = transacao.descricao;
+  tdDescricao.classList.add("novosTh");
 
-    const tdValor = document.createElement("td");
-    tdValor.innerText = transacao.valor;
-    tdValor.classList.add("novosTh");
+  const tdValor = document.createElement("td");
+  tdValor.innerText = transacao.valor;
+  tdValor.classList.add("novosTh");
 
-    const tdTipo = document.createElement("td");
-    tdTipo.innerText = transacao.tipo;
-    tdTipo.classList.add("novosTh");
+  const tdTipo = document.createElement("td");
+  tdTipo.innerText = transacao.tipo;
+  tdTipo.classList.add("novosTh");
 
-    const tdData = document.createElement("td");
-    tdData.innerText = transacao.data;
-    tdData.classList.add("novosTh");
+  const tdData = document.createElement("td");
+  tdData.innerText = transacao.data;
+  tdData.classList.add("novosTh");
 
-    const tdBtn = document.createElement("td")
-    const btnExcluir = document.createElement("button")
-    btnExcluir.className = "excluir"
-    btnExcluir.innerText = "Excluir"
+  const tdBtn = document.createElement("td");
+  const btnExcluir = document.createElement("button");
+  btnExcluir.className = "excluir";
+  btnExcluir.innerText = "Excluir";
 
-    tdBtn.appendChild(btnExcluir)
+  tdBtn.appendChild(btnExcluir);
 
-    tr.append(tdDescricao, tdValor, tdCategoria, tdData, tdTipo, tdBtn);
-    campoHistorico.appendChild(tr);
+  tr.append(tdDescricao, tdValor, tdCategoria, tdData, tdTipo, tdBtn);
+  campoHistorico.appendChild(tr);
 }
 
 function calcEntradas(historico) {
@@ -88,21 +90,20 @@ function calcTotal(historico) {
       return (acc += item.valor);
     } else if (item.tipo === "saidas") {
       return (acc -= item.valor);
-    }else{
-      alert("opção Inválida!")
-      return acc
+    } else {
+      return acc;
     }
   }, 0);
   totalSaldo.innerText = "R$ " + valorTotal;
 }
 
-function atualizarDados(historico){
+function atualizarDados(historico) {
   calcEntradas(historico);
   calcSaidas(historico);
   calcTotal(historico);
 }
 
-function filtrarTransacoes(historico, tipo){
+function filtrarTransacoes(historico, tipo) {
   const historicoFiltrado = historico.filter((item) => {
     if (tipo === "todas") {
       return item;
@@ -110,6 +111,19 @@ function filtrarTransacoes(historico, tipo){
     return item.tipo === tipo;
   });
   return historicoFiltrado;
+}
+
+function salvaHistorico(historico) {
+  localStorage.setItem("historico", JSON.stringify(historico));
+}
+
+function carregarHistorico() {
+  const dados = localStorage.getItem("historico");
+  if (dados !== null) {
+    return JSON.parse(dados);
+  } else {
+    return [];
+  }
 }
 
 // ========= EVENTOS ============
@@ -140,6 +154,7 @@ form.addEventListener("submit", (event) => {
     criarLinha(transacoes);
 
     atualizarDados(historico);
+    salvaHistorico(historico);
   } else {
     console.log("ainda falta inputs");
   }
@@ -150,29 +165,29 @@ filtroTipo.addEventListener("change", (event) => {
   const filtro = filtrarTransacoes(historico, filtroTipo.value);
 
   listHistorico(filtro);
-
 });
 
 function limparTabela() {
   campoHistorico.innerHTML = "";
 }
 
-campoHistorico.addEventListener('click', (e) => {
-  const targetEl = e.target
+campoHistorico.addEventListener("click", (e) => {
+  const targetEl = e.target;
 
- if(targetEl.classList.contains('excluir')){
-    console.log('clique correto botao excluir')
-    const parentEl =  targetEl.closest('tr')
+  if (targetEl.classList.contains("excluir")) {
+    console.log("clique correto botao excluir");
+    const parentEl = targetEl.closest("tr");
     const id = parentEl.dataset.id;
 
-    const indice = historico.findIndex((item) =>{
-    return id === item.id   
-    })
+    const indice = historico.findIndex((item) => {
+      return id === item.id;
+    });
 
-    if (indice >= 0){
+    if (indice >= 0) {
       parentEl.remove();
-      historico.splice(indice, 1)
-      atualizarDados(historico)
+      historico.splice(indice, 1);
+      salvaHistorico(historico)
+      atualizarDados(historico);
     }
-  } 
-})
+  }
+});
