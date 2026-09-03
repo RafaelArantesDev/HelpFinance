@@ -1,7 +1,9 @@
+/* ================== RESET ================== */
+
 * {
-    padding: 0;
     margin: 0;
-    box-shadow: none;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 :root {
@@ -9,187 +11,631 @@
     --cor-secundaria: #021736;
     --cor-destaque: #e0eb13;
     --cor-texto: #fbffc4;
-    font-family: "Nunito", sans-serif;
 
+    font-family: "Nunito Sans", sans-serif;
 }
 
-body{
+html {
+    width: 100%;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+
     background-color: var(--cor-principal);
-    color: var(--cor-texto)
+    color: var(--cor-texto);
 }
 
 
-/* ================== TITULO =============== */
-
+/* ================== TITULO ================== */
 
 header {
     margin: 1rem 2rem;
 }
 
 #title {
+    margin-bottom: 0.1rem;
+
     font-weight: bold;
-    margin-bottom: .1rem;
 }
 
 .sub-title {
-    color: var(--cor-destaque)
+    color: var(--cor-destaque);
 }
 
-/* ================== EXTRATOS =============== */
-#section-main{
+
+/* ================== CONTEÚDO PRINCIPAL ================== */
+
+#section-main {
+    width: 100%;
+
     margin-top: 2rem;
+    padding: 0 1rem;
+
     display: flex;
     flex-direction: column;
     align-items: center;
+
     gap: 2rem;
 }
 
+
+/* ================== EXTRATOS ================== */
+
 #extratos {
+    width: min(100%, 1000px);
+
     display: flex;
-    gap: 6rem;
+    justify-content: center;
+
+    gap: 2rem;
 }
 
-.extratos-box{
-    background-color: var(--cor-secundaria);
-    padding: 3rem;
-    height: 100%;
+.extratos-box {
     flex: 1;
-    min-width: 140px;
+    min-width: 0;
+
+    padding: 3rem 2rem;
+
     text-align: center;
-}
 
-.extratos-box{
-    border-radius: 8px;
+    background-color: var(--cor-secundaria);
+
     border: 1px solid transparent;
-    transition: 0.4s;
+    border-radius: 8px;
+
+    transition:
+        transform 0.4s,
+        border-color 0.4s;
 }
 
-.extratos-box:hover{
-    border-radius: 8px;
-    border: 1px solid var(--cor-destaque);
+.extratos-box:hover {
+    border-color: var(--cor-destaque);
+
     transform: scale(1.03);
 }
 
-#card-entradas{
+#card-entradas {
     color: #0ed100;
 }
 
-#card-saidas{
+#card-saidas {
     color: #e20000;
 }
 
-#card-total{
+#card-total {
     color: var(--cor-texto);
 }
 
-.valores{
+.valores {
     margin-top: 2px;
+
     font-size: 1.5rem;
     font-weight: 600;
 }
 
-/* ================== FORMULÁRIO =============== */
 
-#title-form{
-    text-align: center;
-    margin: 1.5rem;
+/* ================== NOVA TRANSAÇÃO ================== */
+
+#nova-transicao {
+    width: min(100%, 1000px);
 }
+
+#title-form {
+    margin: 1.5rem;
+
+    text-align: center;
+}
+
+
+/* ================== FORMULÁRIO ================== */
 
 #form {
+    width: 100%;
+
     display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
     gap: 1rem;
+
+    flex-wrap: wrap;
 }
 
-.container-input{
-    flex: 0 0 1;
-   
+.container-input {
+    display: flex;
+    flex: 1 1 130px;
+    flex-direction: column;
+
+    gap: 0.3rem;
 }
 
-input {
-    max-width: 100px;
+input,
+select {
+    width: 100%;
+    min-height: 32px;
+
+    padding: 0.35rem 0.5rem;
+
+    border: none;
+    border-radius: 5px;
+
     outline: none;
+
+    font-family: inherit;
 }
 
-#btnForm{
-    background-color: var(--cor-destaque);
-    padding: .2rem;
-    border-style: none;
-    border-radius:10px;
-    transition: 0.2s;
-    font-weight: 600;
-    color: #021736;
-    cursor: pointer;
+input:focus,
+select:focus {
+    outline: 2px solid var(--cor-destaque);
 }
 
-#btnForm:hover{
+
+/* ================== BOTÃO ADICIONAR ================== */
+
+#btnForm {
+    min-height: 32px;
+
+    padding: 0.4rem 1rem;
+
     background-color: var(--cor-destaque);
-    padding: .2rem;
-    border-style: none;
-    border-radius:10px;
+    color: var(--cor-secundaria);
+
+    border: none;
+    border-radius: 8px;
+
+    font-family: inherit;
     font-weight: 600;
-    color: #021736;
-    opacity: .8;
+
     cursor: pointer;
+
+    transition:
+        transform 0.2s,
+        opacity 0.2s;
+}
+
+#btnForm:hover {
+    opacity: 0.8;
+
     transform: scale(1.025);
 }
 
-/* ================== HISTORICO =============== */
+
+/* ================== HISTÓRICO ================== */
 
 #historico-transacoes {
+    width: min(100%, 1100px);
+
     display: flex;
     flex-direction: column;
+
+    margin-bottom: 2rem;
 }
 
-#title-historico{
-    text-align: center;
+#title-historico {
     margin-top: 2rem;
+    margin-bottom: 1rem;
+
+    text-align: center;
 }
+
+
+/* ================== FILTROS ================== */
 
 #filtros {
+    width: 100%;
+
     margin-bottom: 1rem;
-}
 
-tr {
     display: flex;
-    gap: 8rem;
-    font-size: 1.1rem;
+    align-items: center;
+    justify-content: flex-start;
+
+    gap: 0.6rem;
+
+    flex-wrap: wrap;
 }
 
-th{
+#filtros label {
+    flex-shrink: 0;
+
+    font-weight: 600;
+}
+
+#filtro-tipo {
+    width: 150px;
+    min-width: 150px;
+    max-width: 150px;
+
+    min-height: 32px;
+
+    padding: 0.35rem 0.5rem;
+}
+
+
+/* ================== ÁREA DE SCROLL DA TABELA ================== */
+
+.tabela-scroll {
+    width: 100%;
+
+    /*
+        A tabela cresce normalmente até 320px.
+        Depois disso, somente esta área passa a rolar.
+    */
+    max-height: 320px;
+
+    overflow-x: auto;
+    overflow-y: auto;
+
+    border-radius: 8px;
+
+    /*
+        Cria o contexto necessário para o cabeçalho sticky.
+    */
+    position: relative;
+}
+
+
+/* ================== SCROLL ================== */
+
+.tabela-scroll::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+}
+
+.tabela-scroll::-webkit-scrollbar-track {
+    background-color: var(--cor-secundaria);
+
+    border-radius: 10px;
+}
+
+.tabela-scroll::-webkit-scrollbar-thumb {
+    background-color: var(--cor-destaque);
+
+    border: 2px solid var(--cor-secundaria);
+    border-radius: 10px;
+}
+
+.tabela-scroll::-webkit-scrollbar-thumb:hover {
+    background-color: #f0fa28;
+}
+
+
+/* Firefox */
+
+.tabela-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: var(--cor-destaque) var(--cor-secundaria);
+}
+
+
+/* ================== TABELA ================== */
+
+#tabela {
+    width: 100%;
+    min-width: 760px;
+
+    table-layout: fixed;
+    border-collapse: collapse;
+
+    margin: 0;
+}
+
+#tabela th,
+#tabela td {
+    padding: 0.8rem 0.5rem;
+
     text-align: center;
-    border-bottom: 1.5px solid var(--cor-destaque);
-    min-width: 95px;
-    flex: 1;
+    vertical-align: middle;
 
+    overflow-wrap: break-word;
 }
 
-#lista-transacoes{
+
+/* ================== LARGURA DAS COLUNAS ================== */
+
+/*
+    São 6 colunas.
+    O table-layout: fixed mantém as posições estáveis.
+*/
+
+#tabela th:nth-child(1),
+#tabela td:nth-child(1) {
+    width: 20%;
+}
+
+#tabela th:nth-child(2),
+#tabela td:nth-child(2) {
+    width: 15%;
+}
+
+#tabela th:nth-child(3),
+#tabela td:nth-child(3) {
+    width: 18%;
+}
+
+#tabela th:nth-child(4),
+#tabela td:nth-child(4) {
+    width: 17%;
+}
+
+#tabela th:nth-child(5),
+#tabela td:nth-child(5) {
+    width: 15%;
+}
+
+#tabela th:nth-child(6),
+#tabela td:nth-child(6) {
+    width: 15%;
+}
+
+
+/* ================== CABEÇALHO ================== */
+
+#tabela thead th {
+    position: sticky;
+
+    top: 0;
+    z-index: 10;
+
+    background-color: var(--cor-principal);
+    color: var(--cor-texto);
+
+    border-bottom: 1.5px solid var(--cor-destaque);
+
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+
+/* ================== CORPO ================== */
+
+#lista-transacoes {
     background-color: var(--cor-texto);
     color: var(--cor-principal);
-    border-radius: .5rem;
-    
 }
 
-#lista-transacoes, th{
-    text-align: center;
-    border: none;
-    margin-top: .5rem;
+#lista-transacoes tr {
+    background-color: var(--cor-texto);
+
+    border-bottom: 1px solid rgba(0, 16, 33, 0.15);
+}
+
+#lista-transacoes tr:last-child {
+    border-bottom: none;
+}
+
+#lista-transacoes tr:hover {
+    background-color: #f2f5d7;
 }
 
 .novosTh {
-    font-weight: 600;
     color: var(--cor-principal);
+
+    font-weight: 600;
     text-align: center;
+}
+
+
+/* ================== BOTÃO EXCLUIR ================== */
+
+.excluir {
+    padding: 0.35rem 0.7rem;
+
+    background-color: #d62828;
+    color: #ffffff;
+
     border: none;
-    margin-top: .5rem;
-    min-width: 90px;
-    flex: 1;
+    border-radius: 6px;
+
+    font-family: inherit;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s,
+        opacity 0.2s;
 }
 
-#tabela{
-    display: flex;
-    flex-direction: column;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+.excluir:hover {
+    opacity: 0.85;
+
+    transform: scale(1.05);
 }
 
+
+/* ================== RESPONSIVIDADE ================== */
+
+@media (max-width: 900px) {
+
+    #extratos {
+        gap: 1rem;
+    }
+
+    .extratos-box {
+        padding: 2rem 1rem;
+    }
+
+    #form {
+        gap: 0.8rem;
+    }
+
+    .tabela-scroll {
+        max-height: 300px;
+    }
+}
+
+
+/* ================== TABLET ================== */
+
+@media (max-width: 768px) {
+
+    header {
+        margin: 1rem;
+
+        text-align: center;
+    }
+
+    #section-main {
+        margin-top: 1.5rem;
+    }
+
+
+    /* ---------- EXTRATOS ---------- */
+
+    #extratos {
+        width: 100%;
+
+        flex-direction: column;
+    }
+
+    .extratos-box {
+        width: 100%;
+    }
+
+
+    /* ---------- FORMULÁRIO ---------- */
+
+    #nova-transicao {
+        width: 100%;
+    }
+
+    #form {
+        width: 100%;
+
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .container-input {
+        width: 100%;
+    }
+
+    input,
+    select,
+    #btnForm {
+        width: 100%;
+    }
+
+
+    /* ---------- FILTROS ---------- */
+
+    #filtros {
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+
+        gap: 0.5rem;
+
+        flex-wrap: wrap;
+    }
+
+    #filtro-tipo {
+        width: 140px;
+        min-width: 140px;
+        max-width: 140px;
+    }
+
+
+    /* ---------- HISTÓRICO ---------- */
+
+    #historico-transacoes {
+        width: 100%;
+    }
+
+
+    /* ---------- TABELA ---------- */
+
+    .tabela-scroll {
+        width: 100%;
+        max-height: 280px;
+
+        overflow-x: auto;
+        overflow-y: auto;
+    }
+
+    #tabela {
+        min-width: 760px;
+    }
+}
+
+
+/* ================== MOBILE ================== */
+
+@media (max-width: 480px) {
+
+    header {
+        margin: 0.8rem;
+    }
+
+    #title {
+        font-size: 1.6rem;
+    }
+
+    .sub-title {
+        font-size: 0.95rem;
+    }
+
+    #section-main {
+        padding: 0 0.7rem;
+    }
+
+
+    /* ---------- EXTRATOS ---------- */
+
+    .extratos-box {
+        padding: 1.5rem 1rem;
+    }
+
+    .valores {
+        font-size: 1.3rem;
+    }
+
+
+    /* ---------- TÍTULOS ---------- */
+
+    #title-form,
+    #title-historico {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+
+    /* ---------- FILTROS ---------- */
+
+    #filtros {
+        gap: 0.4rem;
+    }
+
+    #filtro-tipo {
+        width: 125px;
+        min-width: 125px;
+        max-width: 125px;
+    }
+
+
+    /* ---------- TABELA ---------- */
+
+    .tabela-scroll {
+        max-height: 240px;
+    }
+
+    #tabela {
+        min-width: 720px;
+    }
+
+    #tabela th,
+    #tabela td {
+        padding: 0.65rem 0.4rem;
+
+        font-size: 0.9rem;
+    }
+
+    .excluir {
+        padding: 0.3rem 0.55rem;
+
+        font-size: 0.85rem;
+    }
+}
