@@ -126,6 +126,19 @@ function carregarHistorico() {
   }
 }
 
+function limparTabela() {
+  campoHistorico.innerHTML = "";
+}
+
+function limparInputs(){
+  inputCategoria.value = "" 
+  inputData.value = ""
+  inputDesc.value = "" 
+  inputTipo.value = ""
+  inputValor.value = ""
+
+}
+
 // ========= EVENTOS ============
 
 form.addEventListener("submit", (event) => {
@@ -155,6 +168,7 @@ form.addEventListener("submit", (event) => {
 
     atualizarDados(historico);
     salvaHistorico(historico);
+    limparInputs();
   } else {
     console.log("ainda falta inputs");
   }
@@ -167,9 +181,6 @@ filtroTipo.addEventListener("change", (event) => {
   listHistorico(filtro);
 });
 
-function limparTabela() {
-  campoHistorico.innerHTML = "";
-}
 
 campoHistorico.addEventListener("click", (e) => {
   const targetEl = e.target;
