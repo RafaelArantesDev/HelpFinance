@@ -43,7 +43,7 @@ HelpFinance/
 ## 🌐 Demonstração Online
 
 Acesse o projeto publicado e rodando diretamente pelo GitHub Pages:  
-👉 **[Ver Jogo da Velha Online](https://rafaelarantesdev.github.io/HelpFinance/)**
+👉 **[Ver Help Finance Online](https://rafaelarantesdev.github.io/HelpFinance/)**
 
 ---
 
