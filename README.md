@@ -43,7 +43,7 @@ HelpFinance/
 ## 🌐 Demonstração Online
 
 Acesse o projeto publicado e rodando diretamente pelo GitHub Pages:  
-👉 **[Ver Jogo da Velha Online](https://rafaelarantesdev.github.io/HelpFinance/)**
+👉 **[Ver Help Finance Online](https://rafaelarantesdev.github.io/HelpFinance/)**
 
 ---
 
@@ -56,7 +56,7 @@ Caso queira baixar o código e executá-lo na sua máquina:
     git clone [https://github.com/RafaelArantesDev/HelpFinance.git](https://github.com/RafaelArantesDev/HelpFinance.git)
 
     # 2. Acesse a pasta do projeto
-    cd JogoDaVelha
+    cd HelpFinance
 
     # 3. Abra o arquivo index.html no seu navegador ou via VS Code (Live Server)
 ```
