@@ -136,7 +136,6 @@ function limparInputs(){
   inputDesc.value = "" 
   inputTipo.value = ""
   inputValor.value = ""
-
 }
 
 // ========= EVENTOS ============
